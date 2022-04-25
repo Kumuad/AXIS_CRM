@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [AxisCRM Test Suite]" guice-stage="DEVELOPMENT">
+  <listeners>
+    <listener class-name="com.axis.crm.util.CustomListener"/>
+  </listeners>
+  <test name="Test(failed)">
+    <classes>
+      <class name="com.axis.crm.testcases.RegistrationPageTest">
+        <methods>
+          <include name="teardown"/>
+          <include name="setUp"/>
+          <include name="registrationPageTitleTest"/>
+        </methods>
+      </class> <!-- com.axis.crm.testcases.RegistrationPageTest -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [AxisCRM Test Suite] -->
