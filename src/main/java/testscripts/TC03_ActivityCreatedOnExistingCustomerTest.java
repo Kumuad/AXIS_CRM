@@ -3,16 +3,18 @@ package testscripts;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import commonutilities.CommonMethods;
+import commonutilities.CustomListener;
 import commonutilities.TestUtil;
 import pages.CustomerPage;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.RetailAppointmentPage;
 import testbase.TestBase;
-
+@Listeners(CustomListener.class)
 public class TC03_ActivityCreatedOnExistingCustomerTest extends TestBase {
 	// Constructor
 		public TC03_ActivityCreatedOnExistingCustomerTest() {
@@ -26,23 +28,21 @@ public class TC03_ActivityCreatedOnExistingCustomerTest extends TestBase {
 		RetailAppointmentPage retailAppointmentPage;
 		CommonMethods commonmethods;
 
-		@BeforeMethod
-		public void setUp() throws Exception {
-			initialization();
-			loginpage = new LoginPage();
-			homepage = new HomePage();
-			customerPage = new CustomerPage();
-			retailAppointmentPage = new RetailAppointmentPage();
-			testutil = new TestUtil();
-
-		}
+	
+			
+		
 		
 		
 		
 		@Test
 		public void activitycreatedonexistingcustomer() throws Exception {
 			
-			
+			loginpage = new LoginPage();
+			homepage = new HomePage();
+			customerPage = new CustomerPage();
+			retailAppointmentPage = new RetailAppointmentPage();
+			testutil = new TestUtil();
+
 			// Login to admin page
 			loginpage.Login("axisadmin", "acid_qa");
 
@@ -105,8 +105,8 @@ public class TC03_ActivityCreatedOnExistingCustomerTest extends TestBase {
 			//Verify Actaul and expected Appointment 
 			Assert.assertEquals(expappointment, actualappointment, "Appointment created mismatched");
 			
-			
-			
+			//logout
+			loginpage.Logout();
 			
 			
 			
@@ -119,9 +119,6 @@ public class TC03_ActivityCreatedOnExistingCustomerTest extends TestBase {
 		
 		
 		
-		@AfterMethod
-		public void teardown() {
-			driver.quit();
-		}
+		
 
 }

@@ -27,6 +27,11 @@ import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.testng.IClass;
+
+import ru.yandex.qatools.ashot.AShot;
+import ru.yandex.qatools.ashot.Screenshot;
+import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
 
 import testbase.TestBase;
@@ -61,7 +66,17 @@ public class TestUtil extends TestBase{
 	public static XSSFRow row;
 	public static XSSFCell cell;
 	
+	static String FileDateTime = null;
+	static File FilePath = null;
 	
+	
+	public static String outPutFolder;
+	public static String ScreenShotFolder;
+
+	public static File flOutput;
+	public static File flScreenShotFolder, src, dest;
+	public static File flFailedScreenShotFolder;
+		
 
 	//Get Data From Excel Utility with Data provider
 	
@@ -195,13 +210,7 @@ public class TestUtil extends TestBase{
 	}
 	
 	
-	
-	
-	
-	private static void write() {
-		// TODO Auto-generated method stub
-		
-	}
+	/*
 
 	//Take Screen shot of failed Test Cases
 																																																																																																																																																																																																																																																										
@@ -225,13 +234,13 @@ public class TestUtil extends TestBase{
 		flPassScreenshotFolder.mkdir();
 		flFailScreenshotFolder.mkdir();
 		
-		File srcfile=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		//File srcfile=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 		//String currentdir=System.getProperty("user.dir");
 		//FileUtils.copyFile(srcfile, new File(currentdir +"/Screenshots/"+testmethodName+"_" +System.currentTimeMillis()+ ".jpg"));
-		FileUtils.copyFile(srcfile, new File(currentdir +"/Screenshots/"+testmethodName+"_" +dateforrmat+ ".jpg"));
+		//FileUtils.copyFile(srcfile, new File(currentdir +"/Screenshots/"+testmethodName+"_" +dateforrmat+ ".jpg"));
 		
 		
-		
+		//String ScreenShotPath=Screenshot+"\\"+" "+PassScreenShotFolder+" "+testClassName+".jpeg";
 		
 		//Screenshot screenshot=new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver);
 		//ImageIO.write(screenshot.getImage(), "JPEG", new File(ScreenShotPath));
@@ -239,7 +248,11 @@ public class TestUtil extends TestBase{
 
 	
 	 public static void failScreenshot(String testClassName) throws IOException {
-		 String dateforrmat = new SimpleDateFormat("dd-MM-yyyy HH.mm.ss").format(new Date());
+		
+		 try
+		 {
+			 String dateforrmat = new SimpleDateFormat("dd-MM-yyyy HH.mm.ss").format(new Date());
+		 
 		    FailedScreenShot = "FailedScreenShot_"+dateforrmat;
 			
 		     currentDir=System.getProperty("user.dir");
@@ -257,19 +270,29 @@ public class TestUtil extends TestBase{
 			String s2=flFailScreenshotFolder.getAbsolutePath();
 		
 			
-			File srcfile=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		//	File srcfile=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 			
 			//FileUtils.copyFile(srcfile, new File(currentdir +"/Screenshots/"+testClassName+"_" +dateforrmat+ ".jpg"));
 			//FileUtils.copyFile(srcfile, new File(currentdir+"/Screenshot/"+dateforrmat+"/FailedScreenShotFolder/"+dateforrmat+testClassName+"_" +dateforrmat+ ".jpg"));
 			
 			//FileUtils.copyFile(srcfile, new File(Screenshot+FailedScreenShotFolder+testClassName+"_" +dateforrmat+ ".jpg"));
-			FileUtils.copyFile(srcfile, new File(s1+s2+"/"+testClassName+"_" +dateforrmat+ ".jpg"));
+			//FileUtils.copyFile(srcfile, new File(s1+s2+"/"+testClassName+"_" +dateforrmat+ ".jpg"));
 			
+			
+             String ScreenShotPath=FailedScreenShotFolder+" " +testClassName+".jpeg";
+			
+			Screenshot screenshot=new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver);
+		    ImageIO.write(screenshot.getImage(), "JPEG", new File(ScreenShotPath));
+		 }
+		 catch(Exception e)
+		 {
+			 System.out.println(e.getMessage());
+		 }
 			
 	 }
 	 public static void passScreenshot(String testClassName) throws IOException {
-		 String dateforrmat = new SimpleDateFormat("dd-MM-yyyy HH.mm.ss").format(new Date());
-		 PassScreenShot = "PassScreenShot_"+dateforrmat;
+		 String dateforrmat = new SimpleDateFormat("dd-MM-yyyy HH").format(new Date());
+		   PassScreenShot = "PassScreenShot_"+dateforrmat;
 			
 			String currentdir=System.getProperty("user.dir");
 			Screenshot = currentdir +"\\Screenshot_"+dateforrmat;
@@ -284,11 +307,133 @@ public class TestUtil extends TestBase{
 			
 		
 			
-			File srcfile=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+			///File srcfile=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 			
 			//FileUtils.copyFile(srcfile, new File(currentdir +"/Screenshots/"+testClassName+"_" +dateforrmat+ ".jpg"));
-			FileUtils.copyFile(srcfile, new File(currentdir+"/Screenshot/"+"/PassScreenShotFolder/"+testClassName+"_" +dateforrmat+ ".jpg"));
+			//FileUtils.copyFile(srcfile, new File(currentdir+"/Screenshot/"+"/PassScreenShotFolder/"+testClassName+"_" +dateforrmat+ ".jpg"));
+			
+			
+			String ScreenShotPath=Screenshot+"\\"+" "+PassScreenShotFolder+" "+testClassName+".jpeg";
+			
+			Screenshot screenshot=new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver);
+		    ImageIO.write(screenshot.getImage(), "JPEG", new File(ScreenShotPath));
 		 
 	 }
-     
+	 
+	 
+	 
+	 
+	 */
+	 
+	 
+	 
+	 
+	 
+	 public static File screenShotFolder()
+		{
+			
+			String folderDate = new SimpleDateFormat("dd-MM-yyyy HH").format(new Date());
+			PassScreenShot = "PassScreenShot_" + folderDate;
+			// FailedScreenShot = "FailedScreenShot_"+folderDate;
+			currentDir = System.getProperty("user.dir") + "\\Screenshots";
+
+			outPutFolder = currentDir + "\\Output_" + folderDate;
+			ScreenShotFolder = outPutFolder + "\\" + PassScreenShot;
+
+			flOutput = new File(outPutFolder);
+			if (!flOutput.exists()) {
+				if (flOutput.mkdir()) {
+					System.out.println("Directory is created!");
+				} else {
+					System.out.println("Failed to create directory!");
+				}
+			}
+
+			flScreenShotFolder = new File(ScreenShotFolder);
+			if (!flScreenShotFolder.exists()) {
+				if (flScreenShotFolder.mkdir()) {
+					System.out.println("Directory is created!");
+				} else {
+					System.out.println("Failed to create directory!");
+				}
+			}
+			FilePath = flScreenShotFolder;
+
+			return FilePath;
+				
+		}
+	 
+	 
+	 
+	 
+	 
+	 public static File failscreenShotFolder()
+		{
+			
+			String folderDate = new SimpleDateFormat("dd-MM-yyyy HH.mm.ss").format(new Date());
+
+			FailedScreenShot = "FailedScreenShot_" + folderDate;
+			currentDir = System.getProperty("user.dir") + "\\Screenshots";
+
+			outPutFolder = currentDir + "\\Output_" + folderDate;
+
+			FailedScreenShotFolder = outPutFolder + "\\" + FailedScreenShot;
+			// flFailScreenshotFolder = new File(FailedScreenShotFolder);
+
+			flOutput = new File(outPutFolder);
+			if (!flOutput.exists()) {
+				if (flOutput.mkdir()) {
+					System.out.println("Directory is created!");
+				} else {
+					System.out.println("Failed to create directory!");
+				}
+			}
+
+			flScreenShotFolder = new File(FailedScreenShotFolder);
+			if (!flScreenShotFolder.exists()) {
+				if (flScreenShotFolder.mkdir()) {
+					System.out.println("Directory is created!");
+				} else {
+					System.out.println("Failed to create directory!");
+				}
+			}
+			FilePath = flScreenShotFolder;
+
+			
+			return FilePath;
+				
+		}
+	 
+	 
+	 
+	 
+	   //To capture screen shot of complete web page from start to end
+		public static String takeScreenShot(String name) throws IOException
+		{
+			String ScreenShotPath=null;
+			try {
+			Screenshot ss= new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver);
+			 ScreenShotPath=screenShotFolder()+"\\"+name+".jpeg";
+			ImageIO.write(ss.getImage(), "jpeg", new File(ScreenShotPath));
+			}
+			catch(Exception e) {
+				
+			}
+			return ScreenShotPath;
+		}
+
+		public static String failScreenShot(String testclassName) throws IOException
+		{
+			String ScreenShotPath=null;
+			try {
+			Screenshot ss= new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver);
+			ScreenShotPath=System.getProperty("user.dir")+"\\Reports\\FailedScreenShot_"+testclassName+".jpeg";
+			 //ScreenShotPath=failscreenShotFolder()+"\\"+testclassName+".jpeg";
+			ImageIO.write(ss.getImage(), "jpeg", new File(ScreenShotPath));
+			}
+			catch(Exception e) {
+				
+			}
+			return ScreenShotPath;
+		}
 }

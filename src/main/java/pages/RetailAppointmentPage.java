@@ -83,6 +83,10 @@ public class RetailAppointmentPage extends TestBase{
 		@FindBy(xpath ="//div[@data-autoid='Activity_DueDate_0']")
 		WebElement appointmentDuedate;
 		
+		
+		@FindBy(xpath ="//div[@data-autoid='DueDate_0']")
+		WebElement appointmentDuedateOnRetailsCustomerPage;
+		
 		@FindBy(xpath ="//div[@data-autoid='0_AI']/div/i")
 		WebElement appointmentClosEditLink;
 		
@@ -99,6 +103,11 @@ public class RetailAppointmentPage extends TestBase{
 		@FindBy(xpath ="//div[@class='crm-grid-row relative']")
 		WebElement activityPagination;
 		
+		
+		@FindBy(xpath ="//div[contains(text(),'Retail Customer')]")
+		WebElement RetailsCustomerPage;
+		@FindBy(xpath ="//div[contains(text(),'Activities')]")
+		WebElement activitiesPage;
 		
 		// **************Methods********************
 
@@ -124,6 +133,10 @@ public class RetailAppointmentPage extends TestBase{
 			Thread.sleep(2000);
 			
 			searchTextBox.sendKeys(TestUtil.getCellData(appointment_sheet, "TypeOfCustomer", 1));
+			
+			String typeofcustomer=TestUtil.getCellData(appointment_sheet, "TypeOfCustomer", 1);
+			System.out.println("Type of Customer Selected: "+typeofcustomer);
+			System.out.println();
 			filterbutton.click();
 			Thread.sleep(3000);
 			
@@ -138,42 +151,64 @@ public class RetailAppointmentPage extends TestBase{
 			//String value="appointment";
 		   // String subject=value.concat(s);
 			subjectTextBox.sendKeys(subject);
-			
+			System.out.println("Subject Entered: "+subject);
+			System.out.println();
 			TestUtil.writeToExcel(appointment_sheet, 1, 1, subject);
 			
 			Thread.sleep(3000);
 			
+			
+			CommonMethods.scrollByVisibilityofElement(detailsTextBox);
             //enter Details
 			detailsTextBox.sendKeys(TestUtil.getCellData(appointment_sheet, "Details", 1));
+			
+			String details=TestUtil.getCellData(appointment_sheet, "Details", 1);
+			System.out.println("Details Entered: "+details);
+			System.out.println();
 			Thread.sleep(3000);
 			CommonMethods.clickelementbyjavascript(attachement);
 			
 			Thread.sleep(3000);
 			
-			CommonMethods.scrollDown(100);
+			
 			// upload file on appointments page
 			CommonMethods.fileupload(fileupload_appointment_path);
 			Thread.sleep(2000);
 			
 			saveButton.click();
 			
-			Thread.sleep(2000);
+			Thread.sleep(10000);
 			
 			//switch to parent window
 			CommonMethods.switchtoparentwindow();
-			Thread.sleep(3000);
+			Thread.sleep(8000);
 			
+		String exptitle="Activities - CRMnext - Smart.Easy.Complete";
+			//boolean value=activitiesPage.isDisplayed();
+			//boolean value1=RetailsCustomerPage.isDisplayed();
 			//click On Arrow Button on Views Page
-			
+			if(driver.getTitle().equalsIgnoreCase(exptitle))
+			{
 			clickOnArrowButton();
-			//arrowbutton.click();
-			Thread.sleep(4000);
-			System.out.println("=======================================================================================================");
+			
+            System.out.println("=======================================================================================================");
 			
 			System.out.println("Activity is created with Activity ID:   "+activityID.getText()+", Subject: " 
 			+appointmentSubject.getText()+", Status: "+appointmentStatus.getText()+"  and Due date:"+appointmentDuedate.getText());
 			
 			System.out.println("========================================================================================================");
+			}
+			
+			else {
+				Thread.sleep(4000);
+				System.out.println("=======================================================================================================");
+				
+				System.out.println("Activity is created with Subject:   "+" Subject: " 
+				+appointmentSubject.getText()+", Status: "+appointmentStatus.getText()+"  and Due date:"+appointmentDuedateOnRetailsCustomerPage.getText());
+				
+				System.out.println("========================================================================================================");
+			}
+			
 		}
 		
 		

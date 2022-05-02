@@ -29,22 +29,21 @@ public class TC02_AppointmentCreationTest extends TestBase{
 		CommonMethods commonmethods;
 		RetailAppointmentPage retailAppointmentPage;
 		
-		@BeforeMethod
-		public void setUp() throws Exception {
-			initialization();
+		
+			
+		
+
+		
+		@Test
+		public void appointmentcreation() throws Exception {
+			
 			loginpage = new LoginPage();
 			homepage = new HomePage();
 			retailAppointmentPage = new RetailAppointmentPage();
 			testutil = new TestUtil();
 			commonmethods=new CommonMethods();
-		}
 
-		
-		@Test
-		public void appointmentcreation() throws Exception {
-
-			// *****************To create independent Appointment
-			// /Activity***********************
+			// *****************To create independent Appointment/Activity***********************
 
 			// Login to admin page
 			loginpage.Login("axisadmin", "acid_qa");
@@ -88,12 +87,13 @@ public class TC02_AppointmentCreationTest extends TestBase{
 			// Edit Appointment
 			retailAppointmentPage.editAppointment();
 			Thread.sleep(2000);
+			
+			
+			//logout
+			loginpage.Logout();
 
 		}
 
-		@AfterMethod
-		public void teardown() {
-			driver.quit();
-		}
+	
 		
 }

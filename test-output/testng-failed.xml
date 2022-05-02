@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test name="Default test(failed)">
     <classes>
-      <class name="testscripts.TC02_AppointmentCreationTest">
+      <class name="testscripts.TC01_ToVerifyAccountIsCreatedTest">
         <methods>
-          <include name="setUp"/>
-          <include name="appointmentcreation"/>
+          <include name="initialization"/>
           <include name="teardown"/>
+          <include name="tocreateaccount"/>
         </methods>
-      </class> <!-- testscripts.TC02_AppointmentCreationTest -->
+      </class> <!-- testscripts.TC01_ToVerifyAccountIsCreatedTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

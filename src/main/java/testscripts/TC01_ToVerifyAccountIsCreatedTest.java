@@ -32,9 +32,13 @@ public class TC01_ToVerifyAccountIsCreatedTest extends TestBase {
 	OffersAndLeadPage offersAndLeadPage;
 	CommonMethods commonmethods;
 
-	@BeforeMethod
-	public void setUp() throws Exception {
-		initialization();
+	
+		
+	
+
+	@Test
+	public void tocreateaccount() throws Exception {
+		
 		loginpage = new LoginPage();
 
 		homepage = new HomePage();
@@ -42,26 +46,23 @@ public class TC01_ToVerifyAccountIsCreatedTest extends TestBase {
 		offersAndLeadPage = new OffersAndLeadPage();
 		testutil = new TestUtil();
 
-	}
-
-	@Test
-	public void tocreateaccount() throws Exception {
 
 		// Login to admin page
 		loginpage.Login("axisadmin", "acid_qa");
 
-		// Select Administrator Role
+	// Select Administrator Role
 		homepage.selectrole("Administrator");
 		Thread.sleep(2000);
-
+		
 		// Move to sales Tab
 		homepage.moveToSalesTab();
 		Thread.sleep(2000);
-
+	
 		// click On customer Link in Sales Tab
 		homepage.clickOnCustomerLink();
+		
 
-		// click on New Button
+	// click on New Button
 		customerPage.clickOnNewButton();
 
 		// CLick On Customer Link under New Button
@@ -97,11 +98,9 @@ public class TC01_ToVerifyAccountIsCreatedTest extends TestBase {
 		CommonMethods.scrollDown(400);
 
 		Thread.sleep(3000);
-
+		//logout
+		loginpage.Logout();
 	}
 
-	@AfterMethod
-	public void teardown() {
-		driver.quit();
-	}
+	
 }

@@ -120,11 +120,20 @@ public class HomePage extends TestBase {
 	// move to click On Customer Link under Sales Tab
 	public void clickOnCustomerLink() throws InterruptedException {
 
-		// CommonMethods.mouseHover(salesTab);
-		// CommonMethods.highlightelement(salesTab);
-		// Thread.sleep(2000);
+		
 		CommonMethods.highlightelement(customerslink);
 		customerslink.click();
+
+	}
+	
+	
+	//click On Leads Link
+	
+	public void clickOnLeadsLink() throws InterruptedException {
+
+		
+		CommonMethods.highlightelement(leadslink);
+		leadslink.click();
 
 	}
 

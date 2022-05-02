@@ -123,6 +123,7 @@ public class OffersAndLeadPage extends TestBase{
 		
 		
 		System.out.println("New Offer Created On Existing Customer with Offer Name:  "+offerCreated.getText());
+		TestUtil.takeScreenShot("Offer Creation");
 	}
 
 	
@@ -198,6 +199,8 @@ public class OffersAndLeadPage extends TestBase{
 		
 		
 		System.out.println("New Lead Created On Existing Customer with Lead Name:  "+leadCreated.getText());
+		
+		TestUtil.takeScreenShot("Lead Creation");
 	}
 
 	}

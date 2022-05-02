@@ -114,9 +114,9 @@ public class CommonMethods extends TestBase {
 
 	public static String generateRandomMobileNumber() {
 		Random random = new Random();
-		int randomInt = random.nextInt(1000000000);
-
-		String mobilenumber = String.valueOf(randomInt);
+		//int randomInt = random.nextInt(1000000000);
+		String id=String.format("%09d",random.nextInt(10000));
+		String mobilenumber = String.valueOf(id);
 
 		String s1 = "9";
 		String actualmobnum = s1.concat(mobilenumber);
@@ -127,9 +127,9 @@ public class CommonMethods extends TestBase {
 	//generate Random Customer Id 9 digit
 	public static String generateRandomCustomerID() {
 		Random random = new Random();
-		int randomInt = random.nextInt(1000000000);
-
-		String customerid = String.valueOf(randomInt);
+		//int randomInt = random.nextInt(1000000000);
+		String id=String.format("%09d",random.nextInt(10000));
+		String customerid = String.valueOf(id);
 		return customerid;
 
 	}
@@ -142,6 +142,30 @@ public class CommonMethods extends TestBase {
 		int randomNum = random.nextInt(1000);
 		return randomNum;
 		
+	}
+	
+	
+	//generate Random Email
+	
+	public static String generateRandomEmail() {
+		int num=generateRandomNumber();
+		
+		String email= "test"+num+"@gmail.com";
+		
+		
+		return email;
+	}
+	
+	
+	
+	//generate random PAN Number
+	
+	public static String generatePANNumber() {
+		Random random = new Random();
+		String id=String.format("%04d",random.nextInt(10000));
+		//int randomNum = random.nextInt(1000);
+		String pannumber= "ASDUY"+id+"Z";
+		return pannumber;
 	}
 	//file upload
 	
