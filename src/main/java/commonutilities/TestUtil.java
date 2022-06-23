@@ -13,21 +13,29 @@ import javax.imageio.ImageIO;
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFCreationHelper;
+import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFHyperlink;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.EncryptedDocumentException;
+
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.IClass;
+
+
 
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
@@ -41,11 +49,15 @@ public class TestUtil extends TestBase{
 	public static long PAGE_LOAD_TIMEOUT=70;
 	public static long IMPLICIT_WAIT=80;
 	
+	
+	
+	
 	//public static String TEST_DATA_SHEET_PATH="C:\\Users\\Kumuad Sagar\\eclipse-workspace\\AxisCRM\\src\\main\\java\\testdata\\ServiceRequest.xlsx";
 	
 	
-	public static String TEST_DATA_SHEET_PATH="C:\\Users\\Kumuad Sagar\\eclipse-workspace\\AxisCRM\\src\\main\\java\\testdata\\AccountCreation.xlsx";
-	
+	//public static String TEST_DATA_SHEET_PATH="C:\\Users\\Kumuad Sagar\\eclipse-workspace\\AxisCRM\\src\\main\\java\\testdata\\AccountCreation.xlsx";
+	//kumuad.sagar
+	public static String TEST_DATA_SHEET_PATH="C:\\Users\\kumuad.sagar\\eclipse-workspace\\AxisCRM\\src\\main\\java\\testdata\\AccountCreation.xlsx";
 	static Workbook book;
 	static Sheet sheet;
 	public static String currentDir;
@@ -77,7 +89,7 @@ public class TestUtil extends TestBase{
 	public static File flScreenShotFolder, src, dest;
 	public static File flFailedScreenShotFolder;
 		
-
+	public static String ScreenShotPath;
 	//Get Data From Excel Utility with Data provider
 	
 	public static Object [][] getTestData(String sheetName) throws Exception{
@@ -210,6 +222,43 @@ public class TestUtil extends TestBase{
 	}
 	
 	
+	
+	public static int getRowCount(String sheetName) throws IOException{
+		
+		 FileInputStream file= new FileInputStream(TEST_DATA_SHEET_PATH);
+		  
+		wb=new XSSFWorkbook(file); 
+		int index = wb.getSheetIndex(sheetName);
+		if(index==-1)
+			return 0;
+		else{
+		sheet = wb.getSheetAt(index);
+		int number=sheet.getLastRowNum()+1;
+		return number;
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/*
 
 	//Take Screen shot of failed Test Cases
@@ -325,21 +374,71 @@ public class TestUtil extends TestBase{
 	 
 	 */
 	 
+//=====================================================	 
 	 
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//=====================================================	 
+	 //actual code
 	 
-	 
-	 
-	 public static File screenShotFolder()
+	
+ 
+	 public static void screenShotFolder()
 		{
 			
 			String folderDate = new SimpleDateFormat("dd-MM-yyyy HH").format(new Date());
-			PassScreenShot = "PassScreenShot_" + folderDate;
+			
+			
+		//
 			// FailedScreenShot = "FailedScreenShot_"+folderDate;
+		
 			currentDir = System.getProperty("user.dir") + "\\Screenshots";
 
 			outPutFolder = currentDir + "\\Output_" + folderDate;
+			PassScreenShot = "PassScreenShot_" + folderDate;
 			ScreenShotFolder = outPutFolder + "\\" + PassScreenShot;
-
+			
+			
+			FailedScreenShot = "FailedScreenShot_" + folderDate;
+			FailedScreenShotFolder = outPutFolder + "\\" + FailedScreenShot;
+           
 			flOutput = new File(outPutFolder);
 			if (!flOutput.exists()) {
 				if (flOutput.mkdir()) {
@@ -356,14 +455,33 @@ public class TestUtil extends TestBase{
 				} else {
 					System.out.println("Failed to create directory!");
 				}
+				
+				//FilePath = flScreenShotFolder;
 			}
 			FilePath = flScreenShotFolder;
+			
+			
+			
+			
+			flFailedScreenShotFolder = new File(FailedScreenShotFolder);
+			if (!flFailedScreenShotFolder.exists()) {
+				if (flFailedScreenShotFolder.mkdir()) {
+					System.out.println("Directory is created!");
+				} else {
+					System.out.println("Failed to create directory!");
+				}
+				
+				//FilePath = flFailedScreenShotFolder;
+			}
+			//FilePath = flFailedScreenShotFolder;
+			
+			
 
-			return FilePath;
+			//return FilePath;
 				
 		}
 	 
-	 
+	
 	 
 	 
 	 
@@ -405,7 +523,8 @@ public class TestUtil extends TestBase{
 		}
 	 
 	 
-	 
+ 
+	
 	 
 	   //To capture screen shot of complete web page from start to end
 		public static String takeScreenShot(String name) throws IOException
@@ -413,22 +532,33 @@ public class TestUtil extends TestBase{
 			String ScreenShotPath=null;
 			try {
 			Screenshot ss= new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver);
-			 ScreenShotPath=screenShotFolder()+"\\"+name+".jpeg";
+			//ScreenShotPath=screenShotFolder()+"\\"+name+".jpeg";
+			 ScreenShotPath=CustomListener.ScreenShotFolder+"\\"+name+".jpeg";
+			//ScreenShotPath=outPutFolder+"\\"+" "+ScreenShotFolder+" "+name+".jpeg";
+			
 			ImageIO.write(ss.getImage(), "jpeg", new File(ScreenShotPath));
 			}
 			catch(Exception e) {
 				
 			}
-			return ScreenShotPath;
+		return ScreenShotPath;
 		}
 
-		public static String failScreenShot(String testclassName) throws IOException
+
+	 
+	 
+		
+		public static String failScreenShot(String methodname) throws IOException
 		{
 			String ScreenShotPath=null;
 			try {
 			Screenshot ss= new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver);
-			ScreenShotPath=System.getProperty("user.dir")+"\\Reports\\FailedScreenShot_"+testclassName+".jpeg";
-			 //ScreenShotPath=failscreenShotFolder()+"\\"+testclassName+".jpeg";
+			
+			
+			//ScreenShotPath=System.getProperty("user.dir")+"\\Reports\\FailedScreenShot_"+methodname+".jpeg";
+			ScreenShotPath=CustomListener.FailedScreenShotFolder+"\\"+methodname+".jpeg";
+		//	ScreenShotPath=screenShotFolder()+"\\"   +methodname+".jpeg";
+			//ScreenShotPath=screenShotFolder()+"\\"+" "+FailedScreenShotFolder+" "+methodname+".jpeg";
 			ImageIO.write(ss.getImage(), "jpeg", new File(ScreenShotPath));
 			}
 			catch(Exception e) {
@@ -436,4 +566,42 @@ public class TestUtil extends TestBase{
 			}
 			return ScreenShotPath;
 		}
+		
+		
+		
+		
+		/* public static void takeScreenShot(String methodName) throws IOException, InterruptedException {
+
+			ScreenShotPath = CustomListener.ScreenShotFolder + "\\" + " " + methodName.toUpperCase() + ".jpeg";
+
+			// String
+			// ScreenShotPath="./target/Passcreenshots/"+DS.TestCaseDes+DS.PassScreenShot+".jpeg";
+			Screenshot screenshot = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000))
+					.takeScreenshot(driver);
+			ImageIO.write(screenshot.getImage(), "JPEG", new File(ScreenShotPath));
+
+		}
+*/
+		
+		
+		/*public static void failScreenShot(String methodName) throws IOException, InterruptedException {
+
+			ScreenShotPath=CustomListener.FailedScreenShotFolder+"\\"+" "+methodName.toUpperCase()+".jpeg";
+			//String ScreenShotPath="./target/Failscreenshots/"+DS.TestCaseDes+DS.FailedScreenShot+".jpeg";
+			Screenshot screenshot=new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver);
+			ImageIO.write(screenshot.getImage(), "JPEG", new File(ScreenShotPath));
+			
+		}
+		 
+		
+	*/	
+		
+		
+		
+		
+		
+		
+		
+		
+		
 }

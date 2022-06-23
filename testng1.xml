@@ -6,20 +6,66 @@
 
 <listeners>
 
-<listener class-name="AxisCRM\src\main\java\commonutilities\CustomListener.java">
+<listener class-name="commonutilities.CustomListener">
 </listener>
 </listeners>
-  
+    <!--  
 <test  name="Test">
     <classes>
        
       <class name="testscripts.TC01_ToVerifyAccountIsCreatedTest"/>
     <class name="testscripts.TC02_AppointmentCreationTest"/>
-      <class name="testscripts.TC03_ActivityCreatedOnExistingCustomerTest"/>
-  <class name="testscripts.TC04_ToVerifyNewLeadCreatedTest"/>
+      </classes> -->
+     <!--  <class name="testscripts.TC03_ActivityCreatedOnExistingCustomerTest"/>-->
+  <!-- <class name="testscripts.TC04_ToVerifyNewLeadCreatedTest"/>-->
      
     
+ 
+   
+    
+    <test name="Account Creation ">
+		<classes>
+			<class name="testscripts.TC01_ToVerifyAccountIsCreatedTest" />
+		</classes>
+	</test> <!-- Test -->
+    
      
-    </classes>
-  </test> <!-- Test -->
+  
+    
+    <test name="Appointment Creation ">
+		<classes>
+			<class name="testscripts.TC02_AppointmentCreationTest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	
+	 
+    <test name="Activity Created On Existing Customer ">
+		<classes>
+			<class name="testscripts.TC03_ActivityCreatedOnExistingCustomerTest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	 <test name="Verify New Lead Created ">
+		<classes>
+			<class name="testscripts.TC04_ToVerifyNewLeadCreatedTest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	 <test name="Verify Lead Search ">
+		<classes>
+			<class name="testscripts.TC07_LeadSearchTest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	<test name="Verify Customer Search ">
+		<classes>
+			<class name="testscripts.TC08_CustomerSearchTest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	
+	
+ <!--  </test> Test -->
+ 
 </suite> <!-- Suite -->

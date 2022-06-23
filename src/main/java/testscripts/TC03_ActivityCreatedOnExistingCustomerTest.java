@@ -36,11 +36,11 @@ public class TC03_ActivityCreatedOnExistingCustomerTest extends TestBase {
 		
 		@Test
 		public void activitycreatedonexistingcustomer() throws Exception {
-			
-			loginpage = new LoginPage();
-			homepage = new HomePage();
-			customerPage = new CustomerPage();
-			retailAppointmentPage = new RetailAppointmentPage();
+			String sheetname="accountcreation";
+			loginpage = new LoginPage(driver);
+			homepage = new HomePage(driver);
+			customerPage = new CustomerPage(driver);
+			retailAppointmentPage = new RetailAppointmentPage(driver);
 			testutil = new TestUtil();
 
 			// Login to admin page

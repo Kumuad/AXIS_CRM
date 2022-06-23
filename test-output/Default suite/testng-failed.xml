@@ -3,13 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test name="Default test(failed)">
     <classes>
-      <class name="testscripts.TC01_ToVerifyAccountIsCreatedTest">
+      <class name="testcases.TC15_LeadSearchTest">
         <methods>
-          <include name="initialization"/>
           <include name="teardown"/>
-          <include name="tocreateaccount"/>
+          <include name="ToverifyLeadSearch"/>
         </methods>
-      </class> <!-- testscripts.TC01_ToVerifyAccountIsCreatedTest -->
+      </class> <!-- testcases.TC15_LeadSearchTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

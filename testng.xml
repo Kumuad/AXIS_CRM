@@ -3,17 +3,123 @@
 <suite name="AxisCRM Test Suite">
 
 <listeners>
-<listener class-name="com.axis.crm.util.CustomListener">
+<listener class-name="commonutilities.CustomListener"/>
 
-</listener>
+
 </listeners>
-  <test  name="Test">
-    <classes>
-     <!-- --> <class name="com.axis.crm.testcases.LoginPageTest"/>
-     <!-- --> <class name="com.axis.crm.testcases.HomePageTest"/>
-       <class name="com.axis.crm.testcases.RegistrationPageTest"/>
-
-
-    </classes>
-  </test> <!-- Test -->
-</suite> <!-- Suite -->
+ 
+ 
+  
+    <test name="Account Creation ">
+		<classes>
+			<class name="testcases.TC01_ToverifyAccountIsCreatedTest" />
+		</classes>
+	</test> <!-- Test -->
+    
+     
+  
+    
+    <test name="Lead Creation On Account">
+		<classes>
+			<class name="testcases.TC02_ToverifyLeadIsCreatedOnAccountTest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	 <test name="Activity Creation On Account">
+		<classes>
+			<class name="testcases.TC03_ToverifyActivityCreatedOnAccountTest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	
+	 <test name="New Offer Creation On Account">
+		<classes>
+			<class name="testcases.TC04_ToverifyNewOfferCreatedOnAccountTest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	<test name="Verify Tabs Visible On Account">
+		<classes>
+			<class name="testcases.TC05_ToverifyTabsVisibleOnAccountTest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	
+	<test name="Customer Search">
+		<classes>
+			<class name="testcases.TC06_CustomerSearchTest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	<test name="Activity Created Independently">
+		<classes>
+			<class name="testcases.TC07_ToverifyActivityCreatedIndependentlyTest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	
+	<test name=" Created Activity Closed">
+		<classes>
+			<class name="testcases.TC08_ToverifyCreatedActivityClosedTest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	
+	<test name=" Created Activity Edited">
+		<classes>
+			<class name="testcases.TC09_ToverifyCreatedActivityToBeEditedTest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	
+	<test name="New Lead Creation">
+		<classes>
+			<class name="testcases.TC10_ToVerifyNewLeadCreatedTest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	<test name="Appointment Creation on Lead">
+		<classes>
+			<class name="testcases.TC11_ToverifyAppointmentCreatedOnLeadTest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	
+	
+	
+	<test name="Document Attachement on Lead Details Page">
+		<classes>
+			<class name="testcases.TC12_ToverifyDocumentAttachementOnLeadDetailsPageTest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	
+	<test name="Lead History Page">
+		<classes>
+			<class name="testcases.TC13_ToverifyLeadHistoryPageTest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	<test name="Task Creation On Lead">
+		<classes>
+			<class name="testcases.TC14_ToverifyTaskCreatedOnLeadTest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	
+	
+	<test name="Lead Search">
+		<classes>
+			<class name="testcases.TC15_LeadSearchTest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	
+	<test name="Offer Creation">
+		<classes>
+			<class name="testcases.TC16_ToverifyOfferCreationTest" />
+		</classes>
+	</test> <!-- Test -->
+	
+	
+	</suite> <!-- Suite -->

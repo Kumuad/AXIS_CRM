@@ -1,10 +1,15 @@
 package pages;
 
 import java.io.IOException;
+import java.util.List;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import commonutilities.CommonMethods;
 import commonutilities.TestUtil;
@@ -12,16 +17,22 @@ import testbase.TestBase;
 import pages.CustomerPage;
 public class RetailAppointmentPage extends TestBase{
 	
-	// Constructor
-		public RetailAppointmentPage() {
-			super();
-			PageFactory.initElements(driver, this);
+	/*
+	 * // Constructor public RetailAppointmentPage(WebDriver driver) { //super();
+	 * this.driver = driver; PageFactory.initElements(driver, this);
+	 * 
+	 * 
+	 * }
+	 */
 
+		public RetailAppointmentPage(WebDriver driver) {
+			this.driver = driver;
+			PageFactory.initElements(driver, this);
 		}
 
-		public static String appointment_sheet ="appointment";
+		//public static String appointment_sheet ="appointment";
 		
-		public static String fileupload_appointment_path=  "C:\\Users\\Kumuad Sagar\\eclipse-workspace\\AxisCRM\\src\\main\\java\\commonutilities\\Test.docx";
+		public static String fileupload_appointment_path=  "C:\\Users\\kumuad.sagar\\eclipse-workspace\\AxisCRM\\src\\main\\java\\commonutilities\\Test.docx";
 		
 		
 		
@@ -69,6 +80,9 @@ public class RetailAppointmentPage extends TestBase{
 		@FindBy(xpath ="//a[@data-autoid='gridHF_View0']")
 		WebElement arrowbutton;
 		
+		@FindBy(xpath ="//select[@data-autoid='QueryCategoryId_ctrl']")
+		WebElement activityViewsdropdown;
+		
 		@FindBy(xpath ="//div[@data-autoid='ActivityNo_0']")
 		WebElement activityID;
 		
@@ -90,6 +104,8 @@ public class RetailAppointmentPage extends TestBase{
 		@FindBy(xpath ="//div[@data-autoid='0_AI']/div/i")
 		WebElement appointmentClosEditLink;
 		
+		
+		
 		@FindBy(xpath ="//a[@data-autoid='0_LINK_EDITView01']")
 		WebElement EditViewLink;
 		
@@ -106,8 +122,29 @@ public class RetailAppointmentPage extends TestBase{
 		
 		@FindBy(xpath ="//div[contains(text(),'Retail Customer')]")
 		WebElement RetailsCustomerPage;
+		
 		@FindBy(xpath ="//div[contains(text(),'Activities')]")
 		WebElement activitiesPage;
+		
+		
+		
+		
+		@FindBy(xpath ="//div[@class='pagination__item']")
+		WebElement pagination;
+		
+		@FindBy(xpath ="//div[@class='pagination__item justify-end']")
+		WebElement paginationend;
+		
+		@FindBy(xpath ="//div[@class='crm-grid-row relative']")
+		WebElement paginationlist;
+		
+		@FindBy(xpath ="//select[@data-autoid='pagesize_listing']")
+		WebElement pagelistingdropdown;
+		
+		@FindBy(xpath ="//div[@class='field filter__textbox']/input")
+		WebElement pageGoToTextbox;
+		@FindBy(xpath ="//div[@class='showrecords f12 mr2']")
+		WebElement paginationShowRecordsText;
 		
 		// **************Methods********************
 
@@ -123,7 +160,7 @@ public class RetailAppointmentPage extends TestBase{
 			return subject;
 		}
 
-		public  void createappointment() throws InterruptedException, IOException {
+		public  void createappointment(String appointment_sheet) throws InterruptedException, IOException {
 			
 			CommonMethods.switchwindow();
 			Thread.sleep(3000);
@@ -190,13 +227,16 @@ public class RetailAppointmentPage extends TestBase{
 			if(driver.getTitle().equalsIgnoreCase(exptitle))
 			{
 			clickOnArrowButton();
+			Thread.sleep(3000);
+			CommonMethods.selectByText(activityViewsdropdown, "Appointment");
 			
             System.out.println("=======================================================================================================");
 			
 			System.out.println("Activity is created with Activity ID:   "+activityID.getText()+", Subject: " 
 			+appointmentSubject.getText()+", Status: "+appointmentStatus.getText()+"  and Due date:"+appointmentDuedate.getText());
-			
+		
 			System.out.println("========================================================================================================");
+			TestUtil.takeScreenShot("Appointment Creation");
 			}
 			
 			else {
@@ -207,6 +247,7 @@ public class RetailAppointmentPage extends TestBase{
 				+appointmentSubject.getText()+", Status: "+appointmentStatus.getText()+"  and Due date:"+appointmentDuedateOnRetailsCustomerPage.getText());
 				
 				System.out.println("========================================================================================================");
+				TestUtil.takeScreenShot("Appointment Creation");
 			}
 			
 		}
@@ -244,7 +285,7 @@ public class RetailAppointmentPage extends TestBase{
 		
 		
 		//Edit Appointment
-		public void editAppointment() throws InterruptedException, IOException {
+		public void editAppointment(String appointment_sheet) throws InterruptedException, IOException {
 			CommonMethods.switchwindow();
 			Thread.sleep(3000);
 			driver.manage().window().maximize();
@@ -270,6 +311,7 @@ public class RetailAppointmentPage extends TestBase{
 			System.out.println("===================================================================");
 
 			System.out.println("Appointment Edited With Status: : " + appointmentStatus.getText());
+			TestUtil.takeScreenShot("Appointment Edited");
 
 			System.out.println("====================================================================");
 		}
@@ -278,7 +320,92 @@ public class RetailAppointmentPage extends TestBase{
 		
 		//close Appointment
 		
-		public void CloseAppointment() {
+		public void closeAppointment() throws InterruptedException, IOException {
+			CommonMethods.switchwindow();
+			Thread.sleep(3000);
+			driver.manage().window().maximize();
+			
+			Thread.sleep(2000);
+			//TestUtil.takeScreenShot("Appointment Closed");
+			saveButton.click();
+			
+			// switch to parent window
+			CommonMethods.switchtoparentwindow();
+			Thread.sleep(2000);
+             clickOnArrowButton();
+			
+			Thread.sleep(4000);
+			System.out.println("===================================================================");
+			System.out.println("Appointment Closed With Status: : " + appointmentStatus.getText());
+			System.out.println("====================================================================");
+			TestUtil.takeScreenShot("Appointment Closed");
+		}
+		
+		
+		
+		
+		
+		//pagination
+		
+		
+		
+		//for dropdown  check values
+		public void verifyPaginationDropDownValues() throws InterruptedException, IOException {
+			//select value from dropdown as 10
+			
+			verifypaginationdropdownvalues10();
+			 Thread.sleep(4000);
+			 verifypaginationdropdownvalue20();
+				 
+		}
+		
+		//select value from pagination dropdown as 10
+		public void verifypaginationdropdownvalues10() throws InterruptedException {
+			 CommonMethods.scrollByVisibilityofElement(pagelistingdropdown);
+			  Thread.sleep(4000);
+			  CommonMethods.selectByText(pagelistingdropdown, "10");
+			  
+			  Thread.sleep(4000);
+			  List<WebElement>  ele=driver.findElements(By.xpath("//div[@class='crm-grid-row relative']"));
+			  int actualcount10=ele.size(); 
+			  System.out. println("Row count after selecting dropdown Value as 10 from Pagination: "+ele.size()); 
+			  		 //System.out.println(ele.size());
+		
+			  int expcount=10; 
+			  Assert.assertEquals(expcount, actualcount10,"Count mismatched");
+			 
+		}
+		
+		public void verifypaginationdropdownvalue20() throws InterruptedException {
+			
+			 CommonMethods.scrollByVisibilityofElement(pagelistingdropdown);
+			  Thread.sleep(4000);
+			  CommonMethods.selectByText(pagelistingdropdown, "20");
+			  
+			  Thread.sleep(4000);
+			  List<WebElement>  ele=driver.findElements(By.xpath("//div[@class='crm-grid-row relative']"));
+			  int actualcount10=ele.size(); 
+			  System.out. println("Row count after selecting dropdown Value as 20 from Pagination: "+ele.size()); 
+			  		 //System.out.println(ele.size());
+		
+			  int expcount=20; 
+			  Assert.assertEquals(expcount, actualcount10,"Count mismatched");
+		}
+		
+		
+		
+		//verify Go To pagination TextBox
+		
+		public void verifypaginationGoToTextBox() throws InterruptedException {
+			
+			  Thread.sleep(4000);
+			  CommonMethods.scrollByVisibilityofElement(pageGoToTextbox);
+			pageGoToTextbox.sendKeys("2");
+			  Thread.sleep(4000);
+			pageGoToTextbox.sendKeys(Keys.ENTER);
+			  Thread.sleep(4000);
+			Assert.assertTrue(driver.findElement(By.xpath("//a[@data-autoid='pagination_2']")).isEnabled());
 			
 		}
+		
 	}

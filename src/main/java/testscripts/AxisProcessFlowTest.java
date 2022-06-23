@@ -45,12 +45,12 @@ public class AxisProcessFlowTest extends TestBase{
 	@BeforeMethod
 	public void setUp() throws Exception{
 		initialization();
-		loginpage=new LoginPage();
-		homepage=new HomePage();
-		registrationpage=new RegistrationPage();
-		detailspage=new DetailsPage();
-		makerpage=new MakerPage();
-		checkerpage=new CheckerPage();
+		loginpage=new LoginPage(driver);
+		homepage=new HomePage(driver);
+		registrationpage=new RegistrationPage(driver);
+		detailspage=new DetailsPage(driver);
+		makerpage=new MakerPage(driver);
+		checkerpage=new CheckerPage(driver);
 		testutil=new TestUtil();
 		//homepage=loginpage.Login(prop.getProperty("username"),prop.getProperty("password"));
 		//homepage=loginpage.Login(sheetname, sheetname);

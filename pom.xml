@@ -116,7 +116,11 @@
             <artifactId>freemarker</artifactId>
             <version>2.3.30</version>
         </dependency>
-
+<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>5.0.3</version>
+		</dependency>
 <dependency>
 			<groupId>com.aventstack</groupId>
 			<artifactId>extentreports</artifactId>

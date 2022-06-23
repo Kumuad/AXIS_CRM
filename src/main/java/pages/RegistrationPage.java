@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -20,7 +21,11 @@ import commonutilities.TestUtil;
 import testbase.TestBase;
 
 public class RegistrationPage extends TestBase{
-	
+	public RegistrationPage(WebDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+		
+	}
 	String sheetname="ServiceRequest";
 	//String sheetname="test";
 	//Object Repository of Registration Page
@@ -79,11 +84,7 @@ public class RegistrationPage extends TestBase{
 	@FindBy(xpath=".//div[@class='summaryband__item'][1]/div/div/div/span")
     WebElement SRNumber;
 	//Constructor Initialization
-	public RegistrationPage() {
-		super();
-		PageFactory.initElements(driver, this);
-		
-	}
+	
 	
 	//public static String TEST_DATA_SHEET_PATH="C:\\Users\\Kumuad Sagar\\eclipse-workspace\\AxisCRM\\src\\main\\java\\com\\axis\\crm\\testdata\\ServiceRequest.xlsx";
 	
@@ -98,7 +99,7 @@ public class RegistrationPage extends TestBase{
 
 	
   //Create SR(Service Request)
-	public DetailsPage createServiceRequest(String Product ,String NatureofQuery,String Function
+	public void createServiceRequest(String Product ,String NatureofQuery,String Function
 			,String SubFunction,String SubSubFunction,String AccountNumber,String Remarks) throws InterruptedException, IOException {
 
 		
@@ -163,7 +164,7 @@ public class RegistrationPage extends TestBase{
 		String value=SRNumber.getText();
 		System.out.println("SR Number" +value);
 
-		return new DetailsPage();
+		//return new DetailsPage();
 	}
 	
 	
@@ -174,7 +175,7 @@ public class RegistrationPage extends TestBase{
 	 */
 	
 	
-public DetailsPage serviceRequest() throws IOException, InterruptedException {
+public void serviceRequest() throws IOException, InterruptedException {
 	//select product
 	selectProduct.click();
 	Thread.sleep(2000);
@@ -255,7 +256,7 @@ public DetailsPage serviceRequest() throws IOException, InterruptedException {
 	String value=SRNumber.getText();
 	System.out.println("SR Number" +value);
 	
-	return new DetailsPage();
+	//return new DetailsPage();
 		
 	}
 	

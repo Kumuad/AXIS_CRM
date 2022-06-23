@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>4/0/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>1/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Sun Mar 13 10:47:03 IST 2022</td>
+<td>Started on:</td><td>Fri Jun 03 11:40:17 IST 2022</td>
 </tr>
-<tr><td>Total time:</td><td>55 seconds (55417 ms)</td>
+<tr><td>Total time:</td><td>198 seconds (198047 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,6 +67,67 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='testscripts.TC02_AppointmentCreationTest.appointmentcreation()'><b>appointmentcreation</b><br>Test class: testscripts.TC02_AppointmentCreationTest</td>
+<td><div><pre>org.openqa.selenium.NoSuchSessionException: Session ID is null. Using WebDriver after calling quit()?
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:25:48&apos;
+System info: host: &apos;KUMUADS&apos;, ip: &apos;10.62.159.84&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.1&apos;
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:125)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.executeScript(RemoteWebDriver.java:489)
+	at commonutilities.CommonMethods.highlightelement(CommonMethods.java:72)
+	at pages.HomePage.moveToHomeTab(HomePage.java:167)
+	at testscripts.TC02_AppointmentCreationTest.appointmentcreation(TC02_AppointmentCreationTest.java:56)
+... Removed 25 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace914175168", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace914175168'><pre>org.openqa.selenium.NoSuchSessionException: Session ID is null. Using WebDriver after calling quit()?
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:25:48&apos;
+System info: host: &apos;KUMUADS&apos;, ip: &apos;10.62.159.84&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.1&apos;
+Driver info: driver.version: RemoteWebDriver
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:125)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.executeScript(RemoteWebDriver.java:489)
+	at commonutilities.CommonMethods.highlightelement(CommonMethods.java:72)
+	at pages.HomePage.moveToHomeTab(HomePage.java:167)
+	at testscripts.TC02_AppointmentCreationTest.appointmentcreation(TC02_AppointmentCreationTest.java:56)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:108)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:661)
+	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:869)
+	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1193)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:126)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+	at org.testng.TestRunner.privateRun(TestRunner.java:744)
+	at org.testng.TestRunner.run(TestRunner.java:602)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:380)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:375)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:340)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:289)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1301)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1226)
+	at org.testng.TestNG.runSuites(TestNG.java:1144)
+	at org.testng.TestNG.run(TestNG.java:1115)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+</pre></div></td>
+<td>21</td>
+<td>testscripts.TC02_AppointmentCreationTest@2692b61e</td></tr>
+</table><p>
 <table width='100%' border='1' class='invocation-passed'>
 <tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
@@ -75,25 +136,10 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='com.axis.crm.testcases.LoginPageTest.LoginTest()'><b>LoginTest</b><br>Test class: com.axis.crm.testcases.LoginPageTest</td>
+<td title='testscripts.TC01_ToVerifyAccountIsCreatedTest.tocreateaccount()'><b>tocreateaccount</b><br>Test class: testscripts.TC01_ToVerifyAccountIsCreatedTest</td>
 <td></td>
-<td>7</td>
-<td>com.axis.crm.testcases.LoginPageTest@41005828</td></tr>
-<tr>
-<td title='com.axis.crm.testcases.HomePageTest.clickServiceRequestTest()'><b>clickServiceRequestTest</b><br>Test class: com.axis.crm.testcases.HomePageTest</td>
-<td></td>
-<td>5</td>
-<td>com.axis.crm.testcases.HomePageTest@60b4beb4</td></tr>
-<tr>
-<td title='com.axis.crm.testcases.HomePageTest.homePageTitle()'><b>homePageTitle</b><br>Test class: com.axis.crm.testcases.HomePageTest</td>
-<td></td>
-<td>0</td>
-<td>com.axis.crm.testcases.HomePageTest@60b4beb4</td></tr>
-<tr>
-<td title='com.axis.crm.testcases.RegistrationPageTest.registrationPageTitleTest()'><b>registrationPageTitleTest</b><br>Test class: com.axis.crm.testcases.RegistrationPageTest</td>
-<td></td>
-<td>0</td>
-<td>com.axis.crm.testcases.RegistrationPageTest@7fcf2fc1</td></tr>
+<td>152</td>
+<td>testscripts.TC01_ToVerifyAccountIsCreatedTest@293d0107</td></tr>
 </table><p>
 </body>
 </html>

@@ -2,24 +2,20 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-05-02T09:37:41Z" name="Default suite" finished-at="2022-05-02T09:40:15Z" duration-ms="153995">
+  <suite started-at="2022-06-23T09:19:22Z" name="Default suite" finished-at="2022-06-23T09:21:16Z" duration-ms="114346">
     <groups>
     </groups>
-    <test started-at="2022-05-02T09:37:41Z" name="Default test" finished-at="2022-05-02T09:40:15Z" duration-ms="153995">
-      <class name="testscripts.TC01_ToVerifyAccountIsCreatedTest">
-        <test-method is-config="true" signature="initialization()[pri:0, instance:testscripts.TC01_ToVerifyAccountIsCreatedTest@68dc098b]" started-at="2022-05-02T15:07:41Z" name="initialization" finished-at="2022-05-02T15:07:46Z" duration-ms="4933" status="PASS">
+    <test started-at="2022-06-23T09:19:22Z" name="Default test" finished-at="2022-06-23T09:21:16Z" duration-ms="114346">
+      <class name="testcases.TC01_ToverifyAccountIsCreatedTest">
+        <test-method signature="ToverifyAccountIsCreated()[pri:0, instance:testcases.TC01_ToverifyAccountIsCreatedTest@79179359]" started-at="2022-06-23T14:49:22Z" name="ToverifyAccountIsCreated" finished-at="2022-06-23T14:51:16Z" duration-ms="113991" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- initialization -->
-        <test-method signature="tocreateaccount()[pri:0, instance:testscripts.TC01_ToVerifyAccountIsCreatedTest@68dc098b]" started-at="2022-05-02T15:07:46Z" name="tocreateaccount" finished-at="2022-05-02T15:10:14Z" duration-ms="148188" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tocreateaccount -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:testscripts.TC01_ToVerifyAccountIsCreatedTest@68dc098b]" started-at="2022-05-02T15:10:14Z" name="teardown" finished-at="2022-05-02T15:10:15Z" duration-ms="850" status="PASS">
+        </test-method> <!-- ToverifyAccountIsCreated -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:testcases.TC01_ToverifyAccountIsCreatedTest@79179359]" started-at="2022-06-23T14:51:16Z" name="teardown" finished-at="2022-06-23T14:51:16Z" duration-ms="334" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
-      </class> <!-- testscripts.TC01_ToVerifyAccountIsCreatedTest -->
+      </class> <!-- testcases.TC01_ToverifyAccountIsCreatedTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

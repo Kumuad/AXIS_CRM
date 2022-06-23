@@ -3,9 +3,12 @@ package pages;
 import java.io.IOException;
 
 import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 
 import commonutilities.CommonMethods;
 import commonutilities.TestUtil;
@@ -13,15 +16,16 @@ import testbase.TestBase;
 
 public class LeadsPage extends TestBase {
 	// Constructor
-	public LeadsPage() {
-		super();
+	public LeadsPage(WebDriver driver) {
+		this.driver = driver;
 		PageFactory.initElements(driver, this);
 
 	}
 
 	
 	
-	public String leadcreation_sheetname = "leadcreation";
+	//public String leadcreation_sheetname = "leadcreation";
+	public static String fileupload_document_path=  "C:\\Users\\kumuad.sagar\\eclipse-workspace\\AxisCRM\\src\\main\\java\\commonutilities\\Test.docx";
 	
 	// *********Object Repository Leads Page ****************
 	
@@ -82,6 +86,7 @@ public class LeadsPage extends TestBase {
 	
 	@FindBy(xpath ="//div[@data-autoid='Level2_0']")
 	WebElement selectSubSource;
+	
 	@FindBy(xpath ="//textarea[@data-autoid='cust_531_ctrl']")
 	WebElement leadDescription;
 	
@@ -90,6 +95,10 @@ public class LeadsPage extends TestBase {
 	
 	@FindBy(xpath = "//span[@data-autoid='LE_NUMBER_ctrl']")
 	WebElement leadIDNumber;
+	
+	@FindBy(xpath ="//span[@data-autoid='LE_MOBILE_ctrl']")
+	WebElement mobileNumber;
+	
 	@FindBy(xpath ="//span[contains(text(),'Details')]")
 	WebElement detailsTab;
 	
@@ -113,12 +122,56 @@ public class LeadsPage extends TestBase {
 	@FindBy(xpath ="//span[contains(text(),'History')]")
 	WebElement historyTab;
 	
+	
+	@FindBy(xpath ="//div[@data-autoid='LE_HISTORY_StatusCode']")
+	WebElement leadStatusCodehistoryTab;
+	
+	@FindBy(xpath ="//a[@data-autoid='StatusCode_0']")
+	WebElement leadStatusCode;
+	
+	@FindBy(xpath ="//div[@data-autoid='LE_HISTORY_LastModifiedBy']")
+	WebElement lastmodifiedByhistoryTab;
+	
+	@FindBy(xpath ="//div[@data-autoid='LastModifiedBy_0']")
+	WebElement lastmodifiedBy;
+	
+	@FindBy(xpath ="//div[@data-autoid='LE_HISTORY_RoleName']")
+	WebElement roleNamehistoryTab;
+	
+	@FindBy(xpath ="//div[@data-autoid='RoleName_0']")
+	WebElement roleName;
+	
+	@FindBy(xpath ="//div[@data-autoid='LE_HISTORY_LastModifiedOn']")
+	WebElement lastModifiedOnhistoryTab;
+	
+	@FindBy(xpath ="//div[@data-autoid='LastModifiedOn_0']")
+	WebElement lastModifiedOn;
+	
+	
+	@FindBy(xpath ="//div[@data-autoid='LE_HISTORY_Comments']")
+	WebElement commentshistoryTab;
+	
+	
+	
+	
 	@FindBy(xpath ="//a[@data-autoid='LINK_MULTIPLE_DOCUMENTSLE_RELATED_ATTACHMENTS1']")
 	WebElement attachementNewDocumentLink;
 	
 	@FindBy(xpath ="//a[@data-autoid='Lay_5008']")
 	WebElement defaultattachement;
 	
+	
+	//@FindBy(xpath ="//input[@name='qqfile']")
+	//@FindBy(xpath ="//input[@qq-button-id='621fde09-0072-46aa-9efd-b5a321a6c665']")
+	//@FindBy(xpath ="//div[@class='docUpload__wrapper']")
+	@FindBy(xpath ="//i[@class='icon icon-viewattachment f4']")
+	WebElement attachement;
+	
+	@FindBy(xpath ="//textarea[@data-autoid='DM_DESCRIPTION_ctrl']")
+	WebElement dmsDescription;
+	
+	@FindBy(xpath ="//a[@data-autoid='AttachmentName_0']")
+	WebElement documentsAttached;
 	
 	//Error Msgs
 	@FindBy(xpath ="//span[contains(text(),'Last Name is required')]")
@@ -180,7 +233,15 @@ public class LeadsPage extends TestBase {
 
 		}
 
-		
+		// click On History Tab
+		public void clickOnHistoryTab() throws InterruptedException {
+			CommonMethods.mouseHover(historyTab);
+			CommonMethods.highlightelement(historyTab);
+
+			historyTab.click();
+
+		}
+
 		// click On Activities Tab
 		public void clickOnActivitiestab() throws InterruptedException {
 			CommonMethods.mouseHover(activitiesTab);
@@ -193,7 +254,8 @@ public class LeadsPage extends TestBase {
 		public void clickOnNewAttachementsLink() throws InterruptedException {
 			CommonMethods.mouseHover(attachementNewDocumentLink);
 			CommonMethods.highlightelement(attachementNewDocumentLink);
-
+			Thread.sleep(2000);
+			CommonMethods.highlightelement(defaultattachement);
 			defaultattachement.click();
 
 		}
@@ -220,7 +282,7 @@ public class LeadsPage extends TestBase {
 		
 		
 	// Creation Of new Lead
-	public void createLead() throws IOException, InterruptedException {
+	public void createLead(String leadcreation_sheetname) throws IOException, InterruptedException {
 		System.out.println("************************************");
 		
 		//Enter Name
@@ -348,17 +410,21 @@ public class LeadsPage extends TestBase {
 		
 		Thread.sleep(2000);
 		
-		
-		System.out.println("Lead is created with Lead ID Number:"+leadIDNumber.getText());
+		String leadid=leadIDNumber.getText();
+		System.out.println("Lead is created with Lead ID Number:"+leadid);
+		TestUtil.writeToExcel(leadcreation_sheetname,1, 15, leadid);
 		System.out.println();
+		
 		System.out.println("************************************************************");
+		
+		TestUtil.takeScreenShot("Lead Creation");
 	}
 	
 	
 	
 	
 	// Creation Of Invalid new Lead
-		public void createLeadInvalidData() throws IOException, InterruptedException {
+		public void createLeadInvalidData(String leadcreation_sheetname) throws IOException, InterruptedException {
 			System.out.println("************************************");
 			
 			//Enter Name
@@ -563,19 +629,104 @@ public class LeadsPage extends TestBase {
 		 //System.out.println("ErrorMsg Lead source: "+leadsource);
 		}
 	
+	//to verify document is getting attached under attachements
+	
+	public void verifyDocumentsAttachedOnDetailsPage() throws InterruptedException, IOException {
+		
+		
+
+		CommonMethods.switchwindow();
+		Thread.sleep(10000);
+		
+		System.out.println("Switched to window");
+		driver.manage().window().maximize();
+		Thread.sleep(3000);
+		//CommonMethods.clickelementbyjavascript(attachement);
+		driver.navigate().refresh();
+		//CommonMethods.clickelementbyjavascript(attachement);
+		
+		Actions a = new Actions(driver);
+		a.moveToElement(attachement).click().perform();
+		
+		Thread.sleep(3000);
+		
+		
+		// upload file on Task page
+		CommonMethods.fileupload(fileupload_document_path);
+		
+		CommonMethods.scrollByVisibilityofElement(dmsDescription);
+		dmsDescription.sendKeys("Document Attached");
+		Thread.sleep(3000);
+		saveButton.click();
+		Thread.sleep(5000);
+		CommonMethods.switchtoparentwindow();
+		
+		TestUtil.takeScreenShot("Documents attached");
+		boolean value=documentsAttached.isDisplayed();
+		Assert.assertTrue(value, "Document is not attached");
+		
+	}
 	
 	
 	
 	
+	//to verify lead History details 
+	
+	public void verifyLeadHistoryDetails() throws IOException, InterruptedException {
+		boolean leadstatuscode=leadStatusCodehistoryTab.isDisplayed();
+		Assert.assertTrue(leadstatuscode, "Lead status code Tab not Present");
+		
+		boolean lastmodifiedby=lastmodifiedByhistoryTab.isDisplayed();
+		Assert.assertTrue(lastmodifiedby, "Last modified By Tab not Present");
+		
+		boolean rolename=roleNamehistoryTab.isDisplayed();
+		Assert.assertTrue(rolename, "Role Name Tab not Present");
+		
+		boolean lastModifiedon=lastModifiedOnhistoryTab.isDisplayed();
+		Assert.assertTrue(lastModifiedon, "Last Modified On Tab not Present");
+		
+		
+		boolean comments=commentshistoryTab.isDisplayed();
+		Assert.assertTrue(comments, "Comments On Tab not Present");
+		
+		System.out.println("Lead Status Code :"+leadStatusCode.getText());
+		System.out.println();
+		
+		System.out.println("Last modified By :"+lastmodifiedBy.getText());
+		System.out.println();
+		
+	
+		System.out.println("Role Name :"+roleName.getText());
+		System.out.println();
+		
+		
+		System.out.println("Last Modified On  :"+lastModifiedOn.getText());
+		System.out.println();
+		
+		TestUtil.takeScreenShot("Lead History Details Tab");
+	}
+	
+	//get leadnumber on leads Page
+	public String leadIdNumber() {
+		
+		String expleadId=leadIDNumber.getText();
+	
+		
+		return expleadId;
+		
+	}
 	
 	
 	
 	
+	//get Mobile Number On Leads Page
+      public String verifymobileNumberOnLeadPage() {
+		
+		String expmobilenumber=mobileNumber.getText();
 	
-	
-	
-	
-	
-	
+		
+		return expmobilenumber;
+		
+	}
 	
 }

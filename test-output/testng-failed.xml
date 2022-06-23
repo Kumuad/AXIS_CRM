@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
-  <test name="Default test(failed)">
+<suite name="Failed suite [AxisCRM Test Suite]" guice-stage="DEVELOPMENT">
+  <listeners>
+    <listener class-name="commonutilities.CustomListener"/>
+  </listeners>
+  <test name=" Created Activity Edited(failed)">
     <classes>
-      <class name="testscripts.TC01_ToVerifyAccountIsCreatedTest">
+      <class name="testcases.TC09_ToverifyCreatedActivityToBeEditedTest">
         <methods>
-          <include name="initialization"/>
           <include name="teardown"/>
-          <include name="tocreateaccount"/>
+          <include name="ToverifyCreatedActivityEdited"/>
         </methods>
-      </class> <!-- testscripts.TC01_ToVerifyAccountIsCreatedTest -->
+      </class> <!-- testcases.TC09_ToverifyCreatedActivityToBeEditedTest -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!--  Created Activity Edited(failed) -->
+  <test name="Lead Search(failed)">
+    <classes>
+      <class name="testcases.TC15_LeadSearchTest">
+        <methods>
+          <include name="teardown"/>
+          <include name="ToverifyLeadSearch"/>
+        </methods>
+      </class> <!-- testcases.TC15_LeadSearchTest -->
+    </classes>
+  </test> <!-- Lead Search(failed) -->
+</suite> <!-- Failed suite [AxisCRM Test Suite] -->
